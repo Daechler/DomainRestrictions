@@ -23,10 +23,10 @@ public class DomainRestrictions extends Plugin implements Listener {
     public void onPreLogin(PreLoginEvent event) {
         PendingConnection connection = event.getConnection();
         String hostname = connection.getVirtualHost().getHostName();
-        getLogger().info("Benutzer verbindet sich über: " + hostname);
+        getLogger().info("User connects via: " + hostname);
         if (hostname == null || (!hostname.equalsIgnoreCase("playsmp.xyz") && !hostname.equalsIgnoreCase("localhost") && !hostname.equals("127.0.0.1") && !hostname.equals("127.0.1.1"))) {
             event.setCancelled(true);
-            event.setCancelReason(ChatColor.RED + "Du kannst dich nur über die Domain playsmp.xyz verbinden.");
+            event.setCancelReason(ChatColor.RED + "You can only connect via the domain playsmp.xyz.");
         }
     }
 }

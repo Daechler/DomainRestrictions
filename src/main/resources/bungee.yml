@@ -1,0 +1,3 @@
+name: DomainRestrictions
+version: '${project.version}'
+main: net.daechler.domainrestrictions.DomainRestrictions

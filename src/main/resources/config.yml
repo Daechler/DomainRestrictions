@@ -1,0 +1,11 @@
+# DomainRestrictions Configuration File
+
+# List of allowed domains and IPs
+allowedDomains:
+  - 'daechler.net'
+  - 'localhost'
+  - '127.0.0.1'
+  - '127.0.1.1'
+
+# Message to display when a user tries to connect from a disallowed domain
+cancelMessage: '&cDu kannst dich nur über die Domain &edaechler.net &cverbinden!'

@@ -1,3 +1,5 @@
 name: DomainRestrictions
 version: '${project.version}'
 main: net.daechler.domainrestrictions.DomainRestrictions
+author: Daechler
+description: Prevent players from connecting to your server with a domain other than the official domain.

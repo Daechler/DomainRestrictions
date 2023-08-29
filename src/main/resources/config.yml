@@ -1,5 +1,3 @@
-# DomainRestrictions Configuration File
-
 # List of allowed domains and IPs
 allowedDomains:
   - 'daechler.net'

@@ -78,10 +78,14 @@ public class DomainRestrictions extends Plugin implements Listener {
 
         // Iterate through all allowed domains
         for (String allowedDomain : allowedDomains) {
+            // Convert domains to lowercase to ensure the comparison is case-insensitive
+            String allowedDomainLower = allowedDomain.toLowerCase();
+            String hostnameLower = hostname.toLowerCase();
+
             // If the allowedDomain contains a wildcard
-            if (allowedDomain.contains("*.")) {
-                String[] allowedDomainParts = allowedDomain.split("\\.");
-                String[] hostnameParts = hostname.split("\\.");
+            if (allowedDomainLower.contains("*.")) {
+                String[] allowedDomainParts = allowedDomainLower.split("\\.");
+                String[] hostnameParts = hostnameLower.split("\\.");
 
                 // Check if domain parts match (skipping the wildcard)
                 if (allowedDomainParts.length == hostnameParts.length) {
@@ -97,7 +101,7 @@ public class DomainRestrictions extends Plugin implements Listener {
                         break;
                     }
                 }
-            } else if (hostname.equals(allowedDomain)) {
+            } else if (hostnameLower.equals(allowedDomainLower)) {
                 isHostnameAllowed = true;
                 break;
             }

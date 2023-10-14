@@ -6,7 +6,7 @@
 
     <groupId>net.daechler</groupId>
     <artifactId>DomainRestrictions</artifactId>
-    <version>1.1</version>
+    <version>1.1a</version>
     <packaging>jar</packaging>
 
     <name>DomainRestrictions</name>

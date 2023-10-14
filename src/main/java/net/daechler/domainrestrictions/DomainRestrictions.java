@@ -73,8 +73,38 @@ public class DomainRestrictions extends Plugin implements Listener {
         // Get the cancel message from the config.yml and translate color codes
         String cancelMessage = ChatColor.translateAlternateColorCodes('&', config.getString("cancelMessage"));
 
+        // Flag to determine if the hostname is allowed
+        boolean isHostnameAllowed = false;
+
+        // Iterate through all allowed domains
+        for (String allowedDomain : allowedDomains) {
+            // If the allowedDomain contains a wildcard
+            if (allowedDomain.contains("*.")) {
+                String[] allowedDomainParts = allowedDomain.split("\\.");
+                String[] hostnameParts = hostname.split("\\.");
+
+                // Check if domain parts match (skipping the wildcard)
+                if (allowedDomainParts.length == hostnameParts.length) {
+                    boolean match = true;
+                    for (int i = 1; i < allowedDomainParts.length; i++) {
+                        if (!allowedDomainParts[i].equals(hostnameParts[i])) {
+                            match = false;
+                            break;
+                        }
+                    }
+                    if (match) {
+                        isHostnameAllowed = true;
+                        break;
+                    }
+                }
+            } else if (hostname.equals(allowedDomain)) {
+                isHostnameAllowed = true;
+                break;
+            }
+        }
+
         // Check if the hostname is in the list of allowed domains
-        if (hostname == null || !allowedDomains.contains(hostname.toLowerCase())) {
+        if (hostname == null || !isHostnameAllowed) {
             // Cancel the connection and set the cancel reason
             event.setCancelled(true);
             event.setCancelReason(cancelMessage);
